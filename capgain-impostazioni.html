@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="it" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CapGain — Impostazioni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.31.0/iconfont/tabler-icons.min.css">
+<link rel="stylesheet" href="capgain.css">
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="logo"><svg class="mk" viewBox="0 0 512 512"><defs><linearGradient id="lg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#1f8f5f"/><stop offset="1" stop-color="#34c77b"/></linearGradient></defs><rect width="512" height="512" rx="120" fill="#0b2419"/><path d="M128 360 L240 232 L308 296 L384 168" fill="none" stroke="url(#lg)" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/><path d="M312 168 L384 168 L384 240" fill="none" stroke="url(#lg)" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="wm">Cap<span>Gain</span></span></div>
+    <div class="navlabel">Operatività</div>
+    <a class="nav" href="capgain-panoramica.html" data-tip="Panoramica"><i class="ti ti-layout-dashboard"></i><span>Panoramica</span></a>
+    <a class="nav" href="capgain-licenze.html" data-tip="Licenze"><i class="ti ti-certificate"></i><span>Licenze</span></a>
+    <a class="nav" href="capgain-incassi.html" data-tip="Incassi"><i class="ti ti-wallet"></i><span>Incassi</span><span class="dot">2</span></a>
+    <a class="nav" href="capgain-rete.html" data-tip="Rete"><i class="ti ti-binary-tree-2"></i><span>Rete</span></a>
+    <a class="nav" href="capgain-bonus.html" data-tip="Bonus"><i class="ti ti-gift"></i><span>Bonus</span></a>
+    <div class="navlabel">Account</div>
+    <a class="nav" href="capgain-profilo.html" data-tip="Profilo"><i class="ti ti-user"></i><span>Profilo</span></a>
+    <a class="nav" href="capgain-notifiche.html" data-tip="Notifiche"><i class="ti ti-bell"></i><span>Notifiche</span><span class="dot">3</span></a>
+    <a class="nav on" href="capgain-impostazioni.html" data-tip="Impostazioni"><i class="ti ti-settings"></i><span>Impostazioni</span></a>
+    <div class="foot"><div class="av">AN</div><div class="tx"><div class="nm">Antonio</div><div class="gr">Rango · Partner</div></div></div>
+  </aside>
+  <div class="main">
+    <div class="top">
+      <button class="burger" data-collapse><i class="ti ti-menu-2"></i></button>
+      <div class="ptitle">Impostazioni<small>Preferenze dell'account</small></div>
+      <div class="sp"></div>
+      <div class="daterange"><i class="ti ti-calendar"></i> 1 – 19 giu 2026 <i class="ti ti-chevron-down" style="font-size:14px"></i></div>
+      <button class="iconbtn"><i class="ti ti-bell"></i><span class="bdg">3</span></button>
+      <button class="iconbtn" data-theme-toggle><i class="ti ti-moon"></i></button>
+      <div class="profchip"><div class="av">AN</div><div class="tx"><div class="nm">Antonio</div><div class="gr">CG-001045</div></div></div>
+    </div>
+    <div class="content">
+      <div class="phead"><div><h1>Impostazioni</h1><p>Lingua, aspetto, valuta, notifiche e privacy.</p></div></div>
+      <section class="grid g2">
+        <div class="card"><div class="ct">Generali</div>
+          <div class="srow"><div><div class="stt">Lingua</div><div class="sds">Lingua dell'interfaccia</div></div><select class="sel"><option>Italiano</option><option>English</option><option>Español</option></select></div>
+          <div class="srow"><div><div class="stt">Valuta di visualizzazione</div><div class="sds">Come mostrare gli importi</div></div><select class="sel"><option>USDT</option><option>EUR</option><option>USD</option></select></div>
+          <div class="srow"><div><div class="stt">Tema scuro</div><div class="sds">Attiva l'aspetto scuro</div></div><span class="tgl"><input type="checkbox"><span class="tk"></span></span></div>
+        </div>
+        <div class="card"><div class="ct">Notifiche</div>
+          <div class="srow"><div><div class="stt">Email</div><div class="sds">Ricevi aggiornamenti via email</div></div><span class="tgl"><input type="checkbox" checked><span class="tk"></span></span></div>
+          <div class="srow"><div><div class="stt">Push</div><div class="sds">Notifiche sull'app</div></div><span class="tgl"><input type="checkbox" checked><span class="tk"></span></span></div>
+          <div class="srow"><div><div class="stt">Nuovi iscritti in rete</div><div class="sds">Avvisami quando entra un collaboratore</div></div><span class="tgl"><input type="checkbox" checked><span class="tk"></span></span></div>
+        </div>
+      </section>
+      <section class="card"><div class="ct">Account</div>
+        <div class="srow"><div><div class="stt">Privacy e dati</div><div class="sds">Gestisci i tuoi dati personali</div></div><button class="btn-o">Apri</button></div>
+        <div class="srow"><div><div class="stt">Esci dall'account</div><div class="sds">Termina la sessione su questo dispositivo</div></div><button class="btn-o" style="color:var(--neg);border-color:color-mix(in srgb,var(--neg) 40%,transparent)"><i class="ti ti-logout"></i> Esci</button></div>
+      </section>
+    </div>
+  </div>
+</div>
+<script src="capgain.js"></script>
+</body></html>
