@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="it" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CapGain — Anteprime nuova versione</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.31.0/iconfont/tabler-icons.min.css">
+<style>
+:root{--bg:#eaeef5;--surface:#fff;--line:#e7ecf4;--line2:#dce3ef;--txt:#152030;--muted:#64748b;--faint:#94a3b8;--green:#16a06a;--green-d:#0e8b6a;--green-l:#2bc46f;--green-soft:#e6f6ee;--teal:#12b48f;--gold:#c08a16;--blue:#2f6fe0;}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Inter",system-ui,sans-serif;color:var(--txt);background:
+radial-gradient(800px 460px at 85% -8%,#dceee5,transparent 60%),
+radial-gradient(700px 420px at 0% 0%,#e6effb,transparent 55%),var(--bg);min-height:100vh;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:48px 22px 80px}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:36px}
+.mk{width:44px;height:44px;border-radius:12px}
+.brand b{font-size:22px;font-weight:800;letter-spacing:-.02em}.brand b span{color:var(--green)}
+.brand small{display:block;font-size:9px;letter-spacing:.18em;color:var(--faint);margin-top:-2px}
+h1{font-size:30px;font-weight:800;letter-spacing:-.025em;margin:0}
+.lead{color:var(--muted);font-size:15px;margin:8px 0 0;max-width:620px;line-height:1.6}
+.badge{display:inline-flex;align-items:center;gap:7px;background:var(--green-soft);color:var(--green);font-weight:700;font-size:12px;border-radius:999px;padding:6px 13px;margin-top:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+.card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 16px 40px -28px rgba(20,40,70,.35);transition:transform .15s,border-color .15s,box-shadow .15s;color:inherit;text-decoration:none}
+.card:hover{transform:translateY(-3px);border-color:var(--green);box-shadow:0 26px 50px -30px rgba(16,140,90,.5)}
+.card.feat{grid-column:1 / -1;background:linear-gradient(135deg,#0e9c86,#16a06a 50%,#2bc46f);color:#fff;border:0}
+.ic{width:46px;height:46px;border-radius:13px;background:var(--green-soft);color:var(--green);display:grid;place-items:center;font-size:23px;margin-bottom:14px}
+.card.feat .ic{background:rgba(255,255,255,.18);color:#fff}
+.ct{font-size:17px;font-weight:800;letter-spacing:-.01em}
+.cd{font-size:13px;color:var(--muted);margin-top:5px;line-height:1.5}
+.card.feat .cd{color:rgba(255,255,255,.92)}
+.go{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-weight:700;font-size:13px;color:var(--green)}
+.card.feat .go{color:#fff}
+.tags{display:flex;gap:7px;margin-top:12px;flex-wrap:wrap}
+.t{font-size:10.5px;font-weight:700;border-radius:999px;padding:3px 9px;background:#eef2fb;color:var(--blue)}
+.card.feat .t{background:rgba(255,255,255,.2);color:#fff}
+.foot{margin-top:40px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px}
+@media(max-width:680px){.grid{grid-template-columns:1fr}h1{font-size:25px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <svg class="mk" viewBox="0 0 512 512" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#0e8b6a"/><stop offset="1" stop-color="#2bc46f"/></linearGradient></defs><rect width="512" height="512" rx="120" fill="#0f2e22"/><path d="M128 360 L240 232 L308 296 L384 168" fill="none" stroke="url(#g)" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/><path d="M312 168 L384 168 L384 240" fill="none" stroke="url(#g)" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span><b>Cap<span>Gain</span></b><small>INVEST · GROW · COMPOUND</small></span>
+  </div>
+
+  <h1>Nuova versione — anteprime</h1>
+  <p class="lead">Restyle finanziario di CapGain con due modalità, Semplice e Tecnica, coerenti tra web desktop e app. Questa è una versione di anteprima, separata da quella in produzione.</p>
+  <span class="badge"><i class="ti ti-flask"></i>Anteprima · non modifica il sito attuale</span>
+
+  <div class="grid">
+    <a class="card feat" href="capgain-web-navigazione.html">
+      <div class="ic"><i class="ti ti-layout-sidebar"></i></div>
+      <div class="ct">Sito web — versione navigabile</div>
+      <div class="cd">Il sito reale: menu a icone laterale, sezioni navigabili e interruttore Semplice ⇄ Tecnica che trasforma le pagine.</div>
+      <div class="tags"><span class="t">desktop</span><span class="t">interattivo</span><span class="t">semplice + tecnica</span></div>
+      <span class="go">Apri <i class="ti ti-arrow-right"></i></span>
+    </a>
+
+    <a class="card" href="capgain-anteprima-completa.html">
+      <div class="ic"><i class="ti ti-layout-grid"></i></div>
+      <div class="ct">Anteprima completa</div>
+      <div class="cd">Tutte le sezioni in un'unica schermata scorrevole, con vista Semplice e Tecnica affiancate.</div>
+      <span class="go">Apri <i class="ti ti-arrow-right"></i></span>
+    </a>
+
+    <a class="card" href="capgain-app-mobile.html">
+      <div class="ic"><i class="ti ti-device-mobile"></i></div>
+      <div class="ct">App cellulare</div>
+      <div class="cd">Le schermate dell'app Android (Home, Rete) nello stesso stile, pronte per l'APK.</div>
+      <span class="go">Apri <i class="ti ti-arrow-right"></i></span>
+    </a>
+
+    <a class="card" href="capgain-web-desktop-semplice.html">
+      <div class="ic"><i class="ti ti-square-rounded"></i></div>
+      <div class="ct">Dashboard semplice</div>
+      <div class="cd">La sola Panoramica cliente, vista semplice, a pagina singola.</div>
+      <span class="go">Apri <i class="ti ti-arrow-right"></i></span>
+    </a>
+
+    <a class="card" href="capgain-redesign-dashboard.html">
+      <div class="ic"><i class="ti ti-bulb"></i></div>
+      <div class="ct">Concept iniziale (scuro)</div>
+      <div class="cd">La prima direzione "crypto scuro" con terminale tecnico — tenuta solo come riferimento.</div>
+      <span class="go">Apri <i class="ti ti-arrow-right"></i></span>
+    </a>
+  </div>
+
+  <div class="foot">CapGain — anteprima grafica · dinamicconstruction s.r.l. · le anteprime usano dati di esempio.</div>
+</div>
+</body>
+</html>

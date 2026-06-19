@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="it" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CapGain — Web desktop (vista semplice)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eaeef5; --surface:#ffffff; --surface2:#f4f7fc; --elev:#ffffff;
+  --line:#e7ecf4; --line2:#dce3ef;
+  --txt:#152030; --muted:#64748b; --faint:#94a3b8;
+  --green:#16a06a; --green-d:#0e8b6a; --green-l:#2bc46f; --green-soft:#e6f6ee; --teal:#12b48f;
+  --gold:#c08a16; --gold-soft:#fbf2dd;
+  --blue:#2f6fe0; --pos:#16a06a; --neg:#e2445f; --neg-soft:#fdecef;
+  --r:14px; --r-lg:20px; --r-xl:26px;
+  --shadow:0 1px 2px rgba(20,40,70,.04), 0 16px 40px -26px rgba(20,40,70,.30);
+  --shadow-sm:0 1px 2px rgba(20,40,70,.05), 0 8px 22px -16px rgba(20,40,70,.25);
+  --body:"Inter",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+html[data-theme="dark"]{
+  --bg:#0a1018; --surface:#111a27; --surface2:#0e1622; --elev:#16212f;
+  --line:#1d2a3b; --line2:#27384f;
+  --txt:#e8eef6; --muted:#93a4bb; --faint:#62748f;
+  --green:#2bc46f; --green-d:#16a06a; --green-l:#5fe39a; --green-soft:rgba(43,196,111,.13); --teal:#1fd0a6;
+  --gold:#e3b24a; --gold-soft:rgba(227,178,74,.14);
+  --blue:#4f8bff; --pos:#2bc46f; --neg:#ff5d73; --neg-soft:rgba(255,93,115,.13);
+  --shadow:0 1px 0 rgba(255,255,255,.03) inset, 0 18px 44px -26px rgba(0,0,0,.8);
+  --shadow-sm:0 14px 30px -22px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--body);color:var(--txt);background:var(--bg);min-height:100vh;-webkit-font-smoothing:antialiased}
+.num{font-feature-settings:"tnum" 1;letter-spacing:-.02em}
+.mono{font-family:var(--mono)}
+a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
+
+header{position:sticky;top:0;z-index:30;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid var(--line)}
+.bar{max-width:1240px;margin:0 auto;height:66px;padding:0 22px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:10px}
+.mark{width:34px;height:34px;border-radius:10px;flex:none}
+.brand b{font-weight:800;font-size:17px;letter-spacing:-.02em}.brand b span{color:var(--green)}
+.brand small{display:block;font-size:9px;color:var(--faint);letter-spacing:.18em;margin-top:-2px}
+nav.links{display:flex;gap:2px;margin-left:6px}
+nav.links a{padding:8px 13px;border-radius:10px;font-size:14px;color:var(--muted);font-weight:500}
+nav.links a.active{color:var(--txt);background:var(--surface2)}nav.links a:hover{color:var(--txt)}
+.spacer{flex:1}
+.iconbtn{width:38px;height:38px;border-radius:11px;border:1px solid var(--line);background:var(--surface);color:var(--muted);display:grid;place-items:center;font-size:16px}
+.iconbtn:hover{color:var(--txt);border-color:var(--line2)}
+.who{display:flex;align-items:center;gap:9px}
+.ava{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--green-l));display:grid;place-items:center;color:#04130c;font-weight:700;font-size:13px}
+.who .nm{font-size:13px;font-weight:600;line-height:1.1}.who .em{font-size:11px;color:var(--faint)}
+
+main{max-width:1240px;margin:0 auto;padding:26px 22px 90px}
+.h1{font-size:24px;font-weight:700;letter-spacing:-.02em;margin:0}
+.sub{color:var(--muted);font-size:14px;margin:3px 0 0}
+.eyebrow{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow)}
+.pad{padding:22px}
+.ctitle{font-weight:700;font-size:16px;margin:0;letter-spacing:-.01em}
+.cm{color:var(--muted);font-size:12.5px;margin:2px 0 0}
+.grid{display:grid;gap:18px}
+.cols-2{grid-template-columns:1fr 1fr}
+
+.top-grid{grid-template-columns:1.3fr 1fr;align-items:stretch}
+.hero{position:relative;overflow:hidden;border-radius:var(--r-xl);color:#fff;background:linear-gradient(135deg,#0e9c86 0%,#16a06a 48%,#2bc46f 100%);box-shadow:0 22px 50px -28px rgba(16,140,90,.85);padding:26px 28px}
+.hero::after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.10)}
+.hero .lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.9;font-weight:600}
+.hero .bal{font-size:48px;font-weight:800;letter-spacing:-.03em;margin:8px 0 2px;line-height:1}
+.hero .bal small{font-size:18px;opacity:.9;font-weight:600;margin-left:6px}
+.hero .meta{font-size:13px;opacity:.95}
+.hero .collect{margin-top:18px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative;z-index:2}
+.hero .collect .cl{font-size:12px;opacity:.92}
+.hero .collect .cv{font-size:22px;font-weight:800}
+.hero .collect .tg{background:#fff;color:#0e8b5e;border:0;border-radius:10px;padding:9px 14px;font-weight:700;font-size:13px}
+.hero .spark{position:absolute;left:0;right:0;bottom:0;height:70px;opacity:.45}
+
+.stak{display:flex;gap:16px;align-items:center;height:100%}
+.eurc-badge{width:60px;height:60px;border-radius:50%;background:#1f6fe0;display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px;flex:none}
+.stak .v{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.stak .u{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.04em}
+.wlt{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:8px;word-break:break-all}
+.linkbtn{display:inline-flex;align-items:center;gap:6px;background:var(--green);color:#fff;border:0;border-radius:9px;padding:7px 12px;font-weight:600;font-size:12px;margin-top:8px}
+
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:30px 0 14px}
+.pills{display:inline-flex;border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--surface)}
+.pills button{border:0;background:transparent;color:var(--muted);font-weight:600;font-size:12.5px;padding:7px 14px;border-right:1px solid var(--line)}
+.pills button:last-child{border-right:0}.pills button.on{background:var(--green);color:#fff}
+
+.chartwrap{height:240px;margin-top:6px}
+.todaytag{text-align:right}.todaytag .k{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.05em}
+.todaytag .v{font-size:22px;font-weight:800;color:var(--green)}
+
+/* squadra */
+.slots{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.slot{flex:1;min-width:84px;border:1px solid var(--line);border-radius:var(--r);padding:13px 8px;text-align:center;background:var(--surface2)}
+.slot.full{border-color:var(--green);background:var(--green-soft)}
+.slot .ic{width:32px;height:32px;border-radius:50%;margin:0 auto 8px;display:grid;place-items:center;font-weight:700;font-size:14px}
+.slot.full .ic{background:linear-gradient(135deg,var(--teal),var(--green-l));color:#04130c}
+.slot.free .ic{border:1.5px dashed var(--line2);color:var(--faint)}
+.slot .sn{font-size:12px;font-weight:600}.slot .ss{font-size:10.5px;color:var(--faint);margin-top:2px}
+
+.invite{display:flex;gap:16px;align-items:center}
+.qr{width:92px;height:92px;border-radius:12px;background:#fff;padding:7px;flex:none;border:1px solid var(--line)}
+.code{font-family:var(--mono);font-size:16px;font-weight:600;background:var(--surface2);border:1px solid var(--line);border-radius:9px;padding:8px 13px;display:inline-block;margin-top:6px}
+.ghost{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line2);background:transparent;color:var(--txt);font-weight:600;font-size:13px;padding:9px 14px;border-radius:11px;margin-top:10px}
+.ghost:hover{border-color:var(--green);color:var(--green)}
+
+/* licenze */
+.lic{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 0;border-bottom:1px solid var(--line)}
+.lic:last-child{border-bottom:0}
+.lic .pn{font-weight:700;font-size:14px}.lic .meta{font-size:12px;color:var(--faint);margin-top:3px}
+.bar-prog{height:7px;border-radius:99px;background:var(--surface2);overflow:hidden;margin-top:9px;width:260px;max-width:44vw}
+.bar-prog i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--green-l))}
+.tag{font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px}
+.tag.ok{background:var(--green-soft);color:var(--green)}.tag.warn{background:var(--gold-soft);color:var(--gold)}
+.btn-renew{border:1px solid var(--line2);background:var(--surface);color:var(--txt);font-weight:600;font-size:12.5px;padding:8px 13px;border-radius:10px;margin-top:8px}
+.btn-renew:hover{border-color:var(--green);color:var(--green)}
+
+/* metodo pagamento */
+.pm{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px}
+.method{border:1px solid var(--line);border-radius:var(--r);padding:14px;background:var(--surface2);position:relative}
+.method.on{border-color:var(--green);background:var(--green-soft)}
+.method .mi{width:34px;height:34px;border-radius:10px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;color:var(--muted);font-size:16px}
+.method.on .mi{color:var(--green);border-color:var(--green)}
+.method .ml{font-weight:700;font-size:13.5px;margin-top:9px}
+.method .msub{font-size:11.5px;color:var(--faint);margin-top:1px}
+.method .chk{position:absolute;top:12px;right:12px;color:var(--green);font-weight:700;font-size:14px}
+.method .addr{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px}
+.method .soon{font-size:10.5px;color:var(--gold);font-weight:600;margin-top:8px}
+
+@media(max-width:920px){
+  nav.links,.who .nm,.who .em{display:none}
+  .top-grid,.cols-2{grid-template-columns:1fr}
+  .pm{grid-template-columns:1fr}
+  .hero .bal{font-size:40px}
+}
+@media(max-width:560px){.bar{gap:10px;padding:0 14px}main{padding:18px 14px 80px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a class="brand" href="#">
+      <svg class="mark" viewBox="0 0 512 512" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#0e8b6a"/><stop offset="1" stop-color="#2bc46f"/></linearGradient></defs><rect width="512" height="512" rx="120" fill="#0f2e22"/><path d="M128 360 L240 232 L308 296 L384 168" fill="none" stroke="url(#g)" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/><path d="M312 168 L384 168 L384 240" fill="none" stroke="url(#g)" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span><b>Cap<span>Gain</span></b><small>INVEST · GROW · COMPOUND</small></span>
+    </a>
+    <nav class="links">
+      <a href="#" class="active">Dashboard</a><a href="#">Pacchetti</a><a href="#">Rete</a>
+    </nav>
+    <div class="spacer"></div>
+    <button class="iconbtn" id="themebtn" onclick="toggleTheme()" aria-label="Tema">☾</button>
+    <div class="who"><div class="ava">MR</div><div><div class="nm">Mario Rossi</div><div class="em">mario.rossi@email.it</div></div></div>
+  </div>
+</header>
+
+<main>
+  <div>
+    <h1 class="h1">Ciao, Mario 👋</h1>
+    <p class="sub">Ecco l’andamento dei tuoi investimenti.</p>
+  </div>
+
+  <!-- HERO (provvigioni totali + da incassare) + STAKING EURC -->
+  <div class="grid top-grid" style="margin-top:18px">
+    <div class="hero">
+      <div class="lab">Provvigioni totali</div>
+      <div class="bal num">8.420,50<small>USDT</small></div>
+      <div class="meta">Override di rete + premi di rango, da sempre.</div>
+      <div class="collect">
+        <div><div class="cl">Da incassare ora (provvigioni + ROI)</div><div class="cv num">312,80 USDT</div></div>
+        <button class="tg">Pagato ogni giorno ✓</button>
+      </div>
+      <svg class="spark" viewBox="0 0 600 70" preserveAspectRatio="none"><path d="M0 58 C 90 54 130 46 210 38 C 290 30 330 34 410 22 C 490 12 540 14 600 6 L600 70 L0 70 Z" fill="rgba(255,255,255,.16)"/><path d="M0 58 C 90 54 130 46 210 38 C 290 30 330 34 410 22 C 490 12 540 14 600 6" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2.5"/></svg>
+    </div>
+
+    <div class="card pad">
+      <h2 class="ctitle" style="margin-bottom:14px">Staking EURC</h2>
+      <div class="stak">
+        <div class="eurc-badge">EURC</div>
+        <div style="min-width:0">
+          <div class="num v">3.000</div>
+          <div class="u">EURC IN STAKING</div>
+          <div style="color:var(--green);font-size:12.5px;font-weight:600;margin-top:6px">● Depositato correttamente</div>
+          <div class="wlt">Wallet: 0x7a3f…f21c</div>
+          <button class="linkbtn">Verifica su BscScan ↗</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGAMENTI GIORNALIERI (semplice: solo totale) -->
+  <div class="section-title">
+    <div><div class="eyebrow">Andamento</div><h2 class="ctitle">Pagamenti giornalieri</h2></div>
+    <div style="display:flex;align-items:center;gap:16px">
+      <div class="todaytag"><div class="k">Oggi</div><div class="v num">42,15 USDT</div></div>
+      <div class="pills"><button>Settimana</button><button class="on">Mese</button><button>Anno</button></div>
+    </div>
+  </div>
+  <div class="card pad">
+    <div class="chartwrap"><svg id="area" viewBox="0 0 900 240" preserveAspectRatio="none" style="width:100%;height:100%"></svg></div>
+    <p class="cm" style="margin-top:8px">Quanto ti viene accreditato e pagato ogni giorno in USDT (rendimento + provvigioni + premi).</p>
+  </div>
+
+  <!-- RETE + INVITO -->
+  <div class="grid cols-2" style="margin-top:18px">
+    <div class="card pad">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div><div class="eyebrow">Struttura</div><h3 class="ctitle">La tua rete</h3></div>
+        <span class="tag ok">38 membri · 4/5 in 1ª linea</span>
+      </div>
+      <p class="cm" style="margin-top:6px">Invita un’altra persona per completare la prima linea del blocco 5×5.</p>
+      <div class="slots">
+        <div class="slot full"><div class="ic">G</div><div class="sn">Giulia</div><div class="ss">attiva</div></div>
+        <div class="slot full"><div class="ic">L</div><div class="sn">Luca</div><div class="ss">attivo</div></div>
+        <div class="slot full"><div class="ic">A</div><div class="sn">Anna</div><div class="ss">attiva</div></div>
+        <div class="slot full"><div class="ic">M</div><div class="sn">Marco</div><div class="ss">attivo</div></div>
+        <div class="slot free"><div class="ic">+</div><div class="sn">Libero</div><div class="ss">invita</div></div>
+      </div>
+    </div>
+    <div class="card pad">
+      <div class="eyebrow">Cresci</div><h3 class="ctitle" style="margin-bottom:14px">Il tuo invito</h3>
+      <div class="invite">
+        <div class="qr"><svg viewBox="0 0 100 100" style="width:100%;height:100%"><rect width="100" height="100" fill="#fff"/><g fill="#0f2e22"><rect x="6" y="6" width="22" height="22"/><rect x="12" y="12" width="10" height="10" fill="#fff"/><rect x="72" y="6" width="22" height="22"/><rect x="78" y="12" width="10" height="10" fill="#fff"/><rect x="6" y="72" width="22" height="22"/><rect x="12" y="78" width="10" height="10" fill="#fff"/><rect x="40" y="8" width="6" height="6"/><rect x="52" y="8" width="6" height="6"/><rect x="40" y="40" width="6" height="6"/><rect x="60" y="44" width="6" height="6"/><rect x="48" y="56" width="6" height="6"/><rect x="72" y="48" width="6" height="6"/><rect x="84" y="60" width="6" height="6"/><rect x="40" y="84" width="6" height="6"/><rect x="60" y="78" width="6" height="6"/><rect x="80" y="84" width="6" height="6"/></g></svg></div>
+        <div>
+          <div style="font-size:12px;color:var(--muted)">Codice referral</div>
+          <div class="code">MARIO-7K2</div>
+          <div><button class="ghost">⧉ Copia link invito</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LE TUE LICENZE -->
+  <div class="section-title"><div><div class="eyebrow">Posizioni</div><h2 class="ctitle">Le tue licenze</h2></div></div>
+  <div class="card pad">
+    <div class="lic">
+      <div>
+        <div class="pn">Premium · 2.500 USDT</div>
+        <div class="meta">Attiva — settimana 18 di 40 · scade 14/03/2027</div>
+        <div class="bar-prog"><i style="width:45%"></i></div>
+      </div>
+      <div style="text-align:right"><span class="tag ok">Attiva</span></div>
+    </div>
+    <div class="lic">
+      <div>
+        <div class="pn">Starter · 500 USDT</div>
+        <div class="meta">Attiva — settimana 31 di 40 · scade fra 9 settimane</div>
+        <div class="bar-prog"><i style="width:77%"></i></div>
+        <button class="btn-renew">↻ Rinnova in anticipo</button>
+      </div>
+      <div style="text-align:right"><span class="tag warn">In scadenza</span></div>
+    </div>
+  </div>
+
+  <!-- METODO DI PAGAMENTO -->
+  <div class="section-title"><div><div class="eyebrow">Dove ricevi</div><h2 class="ctitle">Metodo di pagamento</h2></div></div>
+  <div class="card pad">
+    <p class="cm">Scegli dove ricevere profitti e provvigioni.</p>
+    <div class="pm">
+      <div class="method on">
+        <span class="chk">✓</span>
+        <div class="mi">⬡</div>
+        <div class="ml">Wallet BNB</div>
+        <div class="msub">USDT · BEP-20</div>
+        <div class="addr">0x7a3f…f21c · verificato</div>
+      </div>
+      <div class="method">
+        <div class="mi">▭</div>
+        <div class="ml">Carta Igoria</div>
+        <div class="msub">Carta prepagata</div>
+        <div class="soon">Liquidazione ogni lunedì</div>
+      </div>
+      <div class="method">
+        <div class="mi">⌂</div>
+        <div class="ml">IBAN</div>
+        <div class="msub">Bonifico bancario</div>
+        <div class="soon">Presto disponibile</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+function toggleTheme(){
+  const r=document.documentElement,next=r.getAttribute('data-theme')==='light'?'dark':'light';
+  r.setAttribute('data-theme',next);document.getElementById('themebtn').textContent=next==='light'?'☾':'☀';drawArea();
+}
+function cssv(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim();}
+function drawArea(){
+  const svg=document.getElementById('area');if(!svg)return;
+  const pts=[28,33,30,38,36,44,42,50,56,53,62,68,66,74,78,76,84,90];
+  const W=900,H=240,max=100,step=W/(pts.length-1);
+  let d='M0 '+(H-pts[0]/max*H);
+  pts.forEach((p,i)=>{if(i>0){const x=i*step,y=H-p/max*H,px=(i-1)*step,py=H-pts[i-1]/max*H,cx=(px+x)/2;d+=` C ${cx} ${py} ${cx} ${y} ${x} ${y}`;}});
+  const area=d+` L ${W} ${H} L 0 ${H} Z`;
+  let grid='';for(let i=0;i<=4;i++){const gy=18+(H-36)*i/4;grid+=`<line x1="0" y1="${gy}" x2="${W}" y2="${gy}" stroke="${cssv('--line')}" stroke-dasharray="3 5"/>`;}
+  svg.innerHTML=`<defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${cssv('--green')}" stop-opacity=".28"/><stop offset="1" stop-color="${cssv('--green')}" stop-opacity="0"/></linearGradient></defs>${grid}<path d="${area}" fill="url(#ag)"/><path d="${d}" fill="none" stroke="${cssv('--green')}" stroke-width="3" stroke-linecap="round"/><circle cx="${W}" cy="${H-pts[pts.length-1]/max*H}" r="5" fill="${cssv('--green-l')}"/>`;
+}
+window.addEventListener('load',drawArea);drawArea();
+</script>
+</body>
+</html>
